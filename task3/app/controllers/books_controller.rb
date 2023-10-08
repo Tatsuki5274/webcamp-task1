@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all.preload(:favorites)
+    @books = Book.all.preload(:favorites, :book_comments)
     @book = Book.new()
   end
 
