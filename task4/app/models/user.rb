@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :books
   has_many :favorites
   has_many :book_comments
+  has_many :followers, class_name: "Relationship", foreign_key: "follower_id"
+  has_many :followees, class_name: "Relationship", foreign_key: "followee_id"
+
   has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
