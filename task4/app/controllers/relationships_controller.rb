@@ -7,9 +7,9 @@ class RelationshipsController < ApplicationController
         redirect_to request.referer
     end
 
-    def destory
+    def destroy
         relationship = Relationship.find_by(follower_id: current_user.id.to_i(), followee_id: params[:user_id].to_i())
-        relationship.destory()
+        relationship.destroy()
         redirect_to request.referer
     end
 end
