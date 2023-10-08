@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.preload(:followees, :followers)
     @book = Book.new
   end
 

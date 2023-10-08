@@ -11,8 +11,8 @@
       <tr>
         <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
         <td><%= user.name %></td>
-        <td>フォロー数: -1</td>
-        <td>フォロワー数: -1</td>
+        <td>フォロー数: <%= user.followers.count() %></td>
+        <td>フォロー数: <%= user.followers.count() %></td>
         <td>
           <% if user.id != current_user.id then %>
             <% if user.followees.where(follower_id: current_user.id).any? then %>

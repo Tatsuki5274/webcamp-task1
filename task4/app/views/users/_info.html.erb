@@ -8,6 +8,14 @@
 	  <th>introduction</th>
 	  <th><%= user.introduction %></th>
   </tr>
+  <tr>
+    <th>Follows</th>
+    <th><%= user.followers.count() %></th>
+  </tr>
+  <tr>
+    <th>Followers</th>
+    <th><%= user.followees.count() %></th>
+  </tr>
 </table>
 　
 <div class='row'>
