@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  
+
   def show
     @book = Book.find(params[:id])
   end
@@ -23,6 +23,7 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    return redirect_to books_path() if @book.user_id != current_user.id
   end
 
   def update
