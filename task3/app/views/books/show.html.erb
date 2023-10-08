@@ -23,6 +23,22 @@
           <% end %>
         </tr>
       </table>
+      <h3>Comments</h3>
+      <table>
+        <% @book.book_comments.each do |comment| %>
+          <tr>
+            <td><%= image_tag @book.user.get_profile_image, size:"100x100" %><br />
+            <%= @book.user.name %>
+            </td>
+            <td><%= comment.comment %></td>
+          </tr>
+        <% end %>
+      </table>
+      <%= form_with model: @book.book_comments.new(), url: book_book_comments_path(@book.id) do |f| %>
+        <%= f.label :comment %>
+        <%= f.text_area :comment %>
+        <%= f.submit %>
+      <% end %>
     </div>
   </div>
 </div>
