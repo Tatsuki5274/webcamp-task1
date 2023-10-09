@@ -1,0 +1,6 @@
+<%= form_with url: book_search_path do |f| %>
+    <%= f.text_field :text %>
+    <%= f.select :search_method, [["完全一致", "match"], ["前方一致", "left_match"], ["後方一致", "right_match"], ["部分一致", "part_match"]], selected: :match %>
+    <%= f.select :search_target, [["Book", "book"], ["User", "user"]], selected: :book %>
+    <%= f.submit %>
+<% end %>
