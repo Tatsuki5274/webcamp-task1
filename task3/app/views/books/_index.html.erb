@@ -16,7 +16,7 @@
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
-        <% if book.favorites.any? %>
+        <% if book.favorites.where(user_id: current_user.id).any? %>
           <td>
             <%= link_to  book_favorites_path(book.id), method: :delete do %>
               <i class="fa-solid fa-heart"></i>
