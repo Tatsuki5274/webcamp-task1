@@ -1,0 +1,20 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @relationships.each do |relation| %>
+      <tr>
+        <td><%= image_tag relation.follower.get_profile_image, size: '50x50' %></td>
+        <td><%= relation.follower.name %></td>
+        <td>フォロー数: <%= relation.follower.followers.count() %></td>
+        <td>フォロワー数: <%= relation.follower.followers.count() %></td>
+        <td><%= link_to 'Show', relation.follower %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
