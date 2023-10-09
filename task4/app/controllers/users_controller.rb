@@ -27,6 +27,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def followers
+    @relationships = Relationship.where(follower_id: params[:user_id])
+  end
+
+  # def followees
+  #   @users = User.where(followee_id: params[:user_id]).preload(:relationships)
+  # end
+
   private
 
   def user_params
