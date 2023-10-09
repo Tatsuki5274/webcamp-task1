@@ -16,7 +16,6 @@
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
-        <% byebug %>
         <% if book.favorites.where(user_id: current_user.id).any? %>
           <td>
             <%= link_to  book_favorites_path(book.id), method: :delete, remote: true, id: "book-#{book.id}-dislike" do %>
