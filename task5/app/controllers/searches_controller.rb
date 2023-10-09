@@ -17,7 +17,12 @@ class SearchesController < ApplicationController
 
         
         # @books = Book.where(title: search_text).or(Book.where(body: search_text))
-        @books = Book.where("title like ?", search_text).or(Book.where("body like ?", search_text))
-        render "books/search_result"
+        if search_target == "book" then
+            @books = Book.where("title like ?", search_text).or(Book.where("body like ?", search_text))
+            render "books/search_result"
+        elsif search_target == "user" then
+            @users = User.where("name like ?", search_text).or(User.where("introduction like ?", search_text))
+            render "users/search_result"
+        end 
     end
 end
