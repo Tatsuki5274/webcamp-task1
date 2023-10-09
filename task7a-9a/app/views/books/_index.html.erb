@@ -16,28 +16,27 @@
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
-        <% byebug %>
-        <% if book.favorites.where(user_id: current_user.id).any? %>
-          <td>
+        <td>
+          <% if book.favorites.where(user_id: current_user.id).any? %>
             <%= link_to  book_favorites_path(book.id), method: :delete, remote: true, id: "book-#{book.id}-dislike" do %>
               <i class="fa-solid fa-heart"></i>
             <% end %>
 
             <%= link_to book_favorites_path(book.id), method: :post, remote: true, style: "display: none", id: "book-#{book.id}-like" do %>
               <i class="fa-regular fa-heart"></i>
-            <% end %>          
-          </td>
-        <% else %>
-          <td>
+            <% end %>    
+          <% else %>
             <%= link_to  book_favorites_path(book.id), method: :delete, remote: true, style: "display: none", id: "book-#{book.id}-dislike" do %>
               <i class="fa-solid fa-heart"></i>
             <% end %>
 
             <%= link_to book_favorites_path(book.id), method: :post, remote: true, id: "book-#{book.id}-like" do %>
               <i class="fa-regular fa-heart"></i>
-            <% end %>  
-          </td>
-        <% end %>
+            <% end %> 
+          <% end %>
+          <span id="book-<%= book.id %>-count"><%= book.favorites.count %></span>
+        </td>
+
         <td>
           コメント数: <%= book.book_comments.count() %>
         </td>
