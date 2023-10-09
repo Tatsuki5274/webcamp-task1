@@ -16,6 +16,17 @@
     <th>Followers</th>
     <th><%= user.followees.count() %></th>
   </tr>
+  <tr>
+    <% if user.id != current_user.id then %>
+      <th>
+        <% if user.followees.where(follower_id: current_user.id).any? then %>
+          <%= link_to "Unfollow", user_relationships_path(user.id), method: :delete %>
+        <% else %>
+          <%= link_to "Follow", user_relationships_path(user.id), method: :post %>
+        <% end %>
+      </th>
+    <% end %>
+  </tr>
 </table>
 　
 <div class='row'>
