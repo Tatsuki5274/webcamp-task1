@@ -6,8 +6,16 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all.preload(:favorites, :book_comments)
+    #select * from books full join (     select book_id, count(book_id) as count     from favorites     where created_at >= '2023-10-08 00:00:00'     group by book_id ) as CT on books.id = CT.book_id order by count DESC
+    # @books = Book.all.preload(:favorites, :book_comments)
+    to = Time.current.at_end_of_day
+    from = (to - 6.day).at_beginning_of_day
+    @books = Book.includes(:favorites).
+      sort_by {|x|
+        x.favorites.includes(:favorites).where(created_at: from...to).size
+      }.reverse
     @book = Book.new()
+
   end
 
   def create
