@@ -12,6 +12,7 @@
     <p>
 <% end %>
 
+<%= render "layouts/errors", obj: @message %>
 <%= form_with model: @message, url: user_messages_path(params[:user_id]) do |f| %>
     <% f.text_field :text %>
 <% end %>

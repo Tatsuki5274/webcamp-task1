@@ -11,8 +11,17 @@ class MessagesController < ApplicationController
     message = Message.new(message_params)
     message.sender_id = current_user.id
     message.reciever_id = params[:user_id]
-    message.save()
-    redirect_to request.referer
+    if message.save() then
+      redirect_to request.referer
+    else
+      @message = message
+      @messages = Message.where(sender_id: current_user.id, reciever_id: params[:user_id])
+        .or(Message.where(sender_id: params[:user_id], reciever_id: current_user.id))
+  
+        @reciever_name = User.find(params[:user_id]).name
+      render "show"
+    end
+
   end
 
   private
