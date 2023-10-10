@@ -1,8 +1,10 @@
 class BooksController < ApplicationController
+  impressionist :actions=>[:show]
   before_action :authenticate_user!
 
   def show
     @book = Book.find(params[:id])
+    impressionist(@book)
   end
 
   def index
