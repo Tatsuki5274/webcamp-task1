@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'messages/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root :to =>"homes#top"
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       get "/followers" => "users#followers"
       get "/followees" => "users#followees"
     end
+    resource :messages, only: [:show, :create]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
