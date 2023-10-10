@@ -21,4 +21,16 @@ class User < ApplicationRecord
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
+
+  # (string) => boolean
+  def is_following(target_user_id)
+    ret = Relationship.find_by(followee_id: target_user_id, follower_id: id) ? true : false
+    return ret
+  end
+
+  # (string) => boolean
+  def is_followed(target_user_id)
+    ret = Relationship.find_by(followee_id: id, follower_id: target_user_id) ? true : false
+    return ret
+  end
 end

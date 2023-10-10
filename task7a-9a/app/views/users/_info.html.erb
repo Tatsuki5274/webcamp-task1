@@ -23,8 +23,10 @@
   <tr>
     <% if user.id != current_user.id then %>
       <th>
-        <% if user.followees.where(follower_id: current_user.id).any? then %>
+        <% if user.is_followed(current_user.id) then %>
           <%= link_to "Unfollow", user_relationships_path(user.id), method: :delete %>
+          <br>
+          <%= link_to "Start chatting", user_messages_path(user.id) %>
         <% else %>
           <%= link_to "Follow", user_relationships_path(user.id), method: :post %>
         <% end %>
