@@ -26,7 +26,9 @@
         <% if user.is_followed(current_user.id) then %>
           <%= link_to "Unfollow", user_relationships_path(user.id), method: :delete %>
           <br>
-          <%= link_to "Start chatting", user_messages_path(user.id) %>
+          <% if user.is_following(current_user.id) then %>
+            <%= link_to "Start chatting", user_messages_path(user.id) %>
+          <% end %>
         <% else %>
           <%= link_to "Follow", user_relationships_path(user.id), method: :post %>
         <% end %>
