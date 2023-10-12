@@ -1,0 +1,44 @@
+<table class='table'>
+  <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
+  <tr>
+	  <th>name</th>
+	  <th><%= user.name %></th>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+	  <th><%= user.introduction %></th>
+  </tr>
+  <tr>
+    <th>Follows</th>
+    <th>
+      <%= link_to user.followers.count(), followers_user_relationships_path(user.id) %>
+    </th>
+  </tr>
+  <tr>
+    <th>Followers</th>
+    <th>
+      <%= link_to user.followees.count(), followees_user_relationships_path(user.id) %>
+    </th>
+  </tr>
+  <tr>
+    <% if user.id != current_user.id then %>
+      <th>
+        <% if user.is_followed(current_user.id) then %>
+          <%= link_to "Unfollow", user_relationships_path(user.id), method: :delete %>
+          <br>
+          <% if user.is_following(current_user.id) then %>
+            <%= link_to "Start chatting", user_messages_path(user.id) %>
+          <% end %>
+        <% else %>
+          <%= link_to "Follow", user_relationships_path(user.id), method: :post %>
+        <% end %>
+      </th>
+    <% end %>
+  </tr>
+</table>
+　
+<div class='row'>
+  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+    <i class="fas fa-user-cog"></i>
+  <% end %>
+</div>

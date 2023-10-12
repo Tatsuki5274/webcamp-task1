@@ -1,0 +1,18 @@
+<h1>Messages#index</h1>
+<p>Find me in app/views/messages/index.html.erb</p>
+
+<% @messages.each do |message| %>
+    <p>
+        <% if message.sender_id == current_user.id then %>
+        <span>You: </span>
+        <% else %>
+        <span><%= @reciever_name %>:　</span>
+        <% end %>
+        <%= message.text %>
+    <p>
+<% end %>
+
+<%= render "layouts/errors", obj: @message %>
+<%= form_with model: @message, url: user_messages_path(params[:user_id]) do |f| %>
+    <% f.text_field :text %>
+<% end %>

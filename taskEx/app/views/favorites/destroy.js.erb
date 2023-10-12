@@ -1,0 +1,4 @@
+$("#<%= "book-#{@favorite.book_id}-dislike" %> ").hide();
+$("#<%= "book-#{@favorite.book_id}-like" %> ").show();
+var fav_cnt = Number($("#<%= "book-#{@favorite.book_id}-count" %> ").text());
+$("#<%= "book-#{@favorite.book_id}-count" %> ").text(fav_cnt - 1);
