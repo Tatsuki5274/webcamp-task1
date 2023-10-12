@@ -58,3 +58,4 @@ gem 'devise'
 gem 'net-smtp'
 
 gem 'impressionist'
+gem 'dotenv-rails'
